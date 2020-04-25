@@ -1,0 +1,659 @@
+{
+	"info": {
+		"_postman_id": "1ec4a46d-1de3-4065-af0b-ee3d19e122f0",
+		"name": "Conference",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8000/api/auth/jwt/create",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"auth",
+						"jwt",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "website",
+						"value": "www.myconference.com",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "test211",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8000/api/user/",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"user",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Profile Get",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "website",
+						"value": "www.myconference.com",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "localhost:8000/api/user/",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"user",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Profile Update",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "website",
+						"value": "www.myconference.com",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "city",
+							"value": "Abootabad",
+							"type": "text"
+						},
+						{
+							"key": "organization",
+							"value": "COMSAYSsad",
+							"type": "text"
+						},
+						{
+							"key": "bio",
+							"value": "Just an all round awesome guy",
+							"type": "text"
+						},
+						{
+							"key": "user",
+							"value": "2",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "full_name",
+							"value": "Fahd Sultan",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8000/api/profiles/2/",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"profiles",
+						"2",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "My Conference List Create",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "website",
+						"value": "www.myconference.com",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Conference on testing new APIs",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "Some testing that I am doing for this API",
+							"type": "text"
+						},
+						{
+							"key": "acronym",
+							"value": "APITEST",
+							"type": "text"
+						},
+						{
+							"key": "email_conference",
+							"value": "test@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "email_chair",
+							"value": "chair@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "website",
+							"value": "http://www.myconference.com",
+							"type": "text"
+						},
+						{
+							"key": "public",
+							"value": "0",
+							"type": "text"
+						},
+						{
+							"key": "date_start",
+							"value": "2020-05-28",
+							"type": "text"
+						},
+						{
+							"key": "date_end",
+							"value": "2020-06-19",
+							"type": "text"
+						},
+						{
+							"key": "time_start",
+							"value": "6:25 AM",
+							"type": "text"
+						},
+						{
+							"key": "time_end",
+							"value": "8:45 AM",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8000/api/my-conferences/",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"my-conferences",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "My Conference Update",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "website",
+						"value": "www.myconference.com",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Conference on testing new APIs Modified",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "Some testing that I am doing for this API",
+							"type": "text"
+						},
+						{
+							"key": "acronym",
+							"value": "APITEST",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "email_conference",
+							"value": "test@gmail.com",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "email_chair",
+							"value": "chair@gmail.com",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "website",
+							"value": "http://www.myconference.com",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "public",
+							"value": "0",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "date_start",
+							"value": "2020-05-28",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "date_end",
+							"value": "2020-06-19",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "time_start",
+							"value": "6:25 AM",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "time_end",
+							"value": "8:45 AM",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8000/api/my-conferences/31/",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"my-conferences",
+						"31",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Venue List Create",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "website",
+						"type": "text",
+						"value": "www.myconference.com",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "conference",
+							"value": "32",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "name",
+							"value": "Room to the lefty",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "Some damn room on the left what can i say",
+							"type": "text"
+						}
+					],
+					"options": {
+						"formdata": {}
+					}
+				},
+				"url": {
+					"raw": "localhost:8000/api/venues/list/27/",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"venues",
+						"list",
+						"27",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Venues Update",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "website",
+						"value": "www.myconference.com",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "conference",
+							"value": "32",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "name",
+							"value": "Room to the right asdasdasdsadsadsad",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "Some damn room on the left what can i say",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8000/api/venues/51/",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"venues",
+						"51",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Other Conferences",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "website",
+						"value": "www.myconference.com",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "localhost:8000/api/other-conferences/?search=felis",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"other-conferences",
+						""
+					],
+					"query": [
+						{
+							"key": "search",
+							"value": "felis"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Profile",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "website",
+						"type": "text",
+						"value": "www.myconference.com",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "test211",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8000/api/profile/",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"profile",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Profile",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "website",
+						"type": "text",
+						"value": "www.myconference.com",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "full_name",
+							"value": "Someone Important",
+							"type": "text"
+						},
+						{
+							"key": "city",
+							"value": "Stupidville",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8000/api/profile/",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"profile",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Agenda List Create",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "website",
+						"type": "text",
+						"value": "www.myconference.com",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Room to the lefty",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "Some damn room on the left what can i say",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8000/api/schedules/list/27/",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"schedules",
+						"list",
+						"27",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNTg5ODExNTAyLCJqdGkiOiJiNGFlNzdhNzYwMGU0OTcwYTE2NDAxNmM2N2UzYWZkYiIsInVzZXJfaWQiOjF9.Y1HpNuTEfVvCzOKYm2teo7AvGY38tQd881dkimPjSwk",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "83d85afd-4b9d-40ed-8d62-da9720b1304b",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "704aeb33-523e-484b-92e6-58eda22e8412",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
