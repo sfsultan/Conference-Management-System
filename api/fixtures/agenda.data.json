@@ -1,0 +1,12 @@
+[
+  {
+  "model": "api.agenda",
+    "pk": 1,
+    "fields": {
+      "conference": "5",
+      "venue": "5",
+      "name": "Room 5",
+      "description": "Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim."
+    }
+  }
+]

@@ -1,0 +1,513 @@
+
+[
+  {
+  "model": "api.conference",
+    "pk": 1,
+    "fields": {
+      "user": 7,
+      "name": "Conference on sit amet eros suspendisse",
+      "description": "Morbi non quam nec dui luctus rutrum. Nulla tellus. In sagittis dui vel nisl. Duis ac nibh. Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus.",
+      "acronym": "EDBI",
+      "website": "www.businessinsider.com",
+      "email_conference": "jjewster0@goo.gl",
+      "email_chair": "cpedycan0@reference.com",
+      "starts": "2020-05-28 6:25 AM",
+      "ends": "2020-06-19 8:45 AM",
+      "created_at": "2020-02-28 07:47:44",
+      "modified_at": "2020-02-28 07:47:44"
+    }
+  },
+  {
+  "model": "api.conference",
+    "pk": 2,
+    "fields": {
+      "user": 4,
+      "name": "Conference on et commodo vulputate justo in blandit ultrices",
+      "description": "Phasellus sit amet erat. Nulla tempus. Vivamus in felis eu sapien cursus vestibulum. Proin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem. Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit.",
+      "acronym": "TUES",
+      "website": "www.ucsd.edu",
+      "email_conference": "stebboth1@sfgate.com",
+      "email_chair": "bkettley1@samsung.com",
+      "starts": "2020-05-01 11:56 AM",
+      "ends": "2020-06-29 3:33 PM",
+      "created_at": "2019-12-19 11:09:13",
+      "modified_at": "2019-12-19 11:09:13"
+    }
+  },
+  {
+  "model": "api.conference",
+    "pk": 3,
+    "fields": {
+      "user": 6,
+      "name": "Conference on felis sed lacus morbi sem mauris laoreet",
+      "description": "Curabitur gravida nisi at nibh. In hac habitasse platea dictumst. Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem. Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat.",
+      "acronym": "UBSI",
+      "website": "www.cdbaby.com",
+      "email_conference": "mfraczkiewicz2@multiply.com",
+      "email_chair": "mschouthede2@is.gd",
+      "starts": "2020-05-19 2:54 PM",
+      "ends": "2020-06-16 6:21 AM",
+      "created_at": "2020-03-18 20:31:16",
+      "modified_at": "2020-03-18 20:31:16"
+    }
+  },
+  {
+  "model": "api.conference",
+    "pk": 4,
+    "fields": {
+      "user": 6,
+      "name": "Conference on nam ultrices libero non mattis pulvinar",
+      "description": "Fusce lacus purus, aliquet at, feugiat non, pretium quis, lectus. Suspendisse potenti. In eleifend quam a odio. In hac habitasse platea dictumst. Maecenas ut massa quis augue luctus tincidunt.",
+      "acronym": "WBMD",
+      "website": "www.moonfruit.com",
+      "email_conference": "nmccahey3@forbes.com",
+      "email_chair": "srackstraw3@mail.ru",
+      "starts": "2020-05-23 12:38 AM",
+      "ends": "2020-06-23 10:55 PM",
+      "created_at": "2020-05-30 21:42:04",
+      "modified_at": "2020-05-30 21:42:04"
+    }
+  },
+  {
+  "model": "api.conference",
+    "pk": 5,
+    "fields": {
+      "user": 2,
+      "name": "Conference on magna ac consequat metus sapien",
+      "description": "Vestibulum rutrum rutrum neque. Aenean auctor gravida sem. Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio. Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices.",
+      "acronym": "SGY",
+      "website": "www.princeton.edu",
+      "email_conference": "rthewlis4@last.fm",
+      "email_chair": "ddellenbroker4@opensource.org",
+      "starts": "2020-05-28 8:34 PM",
+      "ends": "2020-06-18 8:25 PM",
+      "created_at": "2020-05-31 03:57:35",
+      "modified_at": "2020-05-31 03:57:35"
+    }
+  },
+  {
+  "model": "api.conference",
+    "pk": 6,
+    "fields": {
+      "user": 2,
+      "name": "Conference on erat fermentum justo nec condimentum",
+      "description": "Phasellus in felis. Donec semper sapien a libero. Nam dui. Proin leo odio, porttitor id, consequat in, consequat ut, nulla. Sed accumsan felis. Ut at dolor quis odio consequat varius. Integer ac leo. Pellentesque ultrices mattis odio.",
+      "acronym": "TANNZ",
+      "website": "www.wikispaces.com",
+      "email_conference": "rshirland5@sbwire.com",
+      "email_chair": "ldelafoy5@boston.com",
+      "starts": "2020-05-09 11:08 AM",
+      "ends": "2020-06-15 11:00 AM",
+      "created_at": "2019-10-17 02:14:36",
+      "modified_at": "2019-10-17 02:14:36"
+    }
+  },
+  {
+  "model": "api.conference",
+    "pk": 7,
+    "fields": {
+      "user": 4,
+      "name": "Conference on ante vestibulum ante ipsum primis in faucibus",
+      "description": "Aliquam erat volutpat. In congue. Etiam justo. Etiam pretium iaculis justo.",
+      "acronym": "HIW",
+      "website": "www.goo.ne.jp",
+      "email_conference": "qboshard6@blog.com",
+      "email_chair": "tlearmont6@fastcompany.com",
+      "starts": "2020-05-12 4:05 PM",
+      "ends": "2020-06-07 4:20 AM",
+      "created_at": "2019-07-10 20:44:18",
+      "modified_at": "2019-07-10 20:44:18"
+    }
+  },
+  {
+  "model": "api.conference",
+    "pk": 8,
+    "fields": {
+      "user": 6,
+      "name": "Conference on fringilla rhoncus mauris enim leo",
+      "description": "Aenean fermentum. Donec ut mauris eget massa tempor convallis. Nulla neque libero, convallis eget, eleifend luctus, ultricies eu, nibh. Quisque id justo sit amet sapien dignissim vestibulum.",
+      "acronym": "MYL",
+      "website": "www.europa.eu",
+      "email_conference": "jhamon7@blinklist.com",
+      "email_chair": "htodor7@independent.co.uk",
+      "starts": "2020-05-29 2:24 AM",
+      "ends": "2020-06-17 10:09 PM",
+      "created_at": "2020-03-04 17:17:40",
+      "modified_at": "2020-03-04 17:17:40"
+    }
+  },
+  {
+  "model": "api.conference",
+    "pk": 9,
+    "fields": {
+      "user": 2,
+      "name": "Conference on placerat praesent blandit nam nulla integer pede",
+      "description": "Aliquam erat volutpat. In congue. Etiam justo.",
+      "acronym": "AGNCP",
+      "website": "www.webs.com",
+      "email_conference": "eplampeyn8@google.pl",
+      "email_chair": "smapledoore8@upenn.edu",
+      "starts": "2020-05-01 5:48 AM",
+      "ends": "2020-06-16 3:03 AM",
+      "created_at": "2019-12-19 21:20:56",
+      "modified_at": "2019-12-19 21:20:56"
+    }
+  },
+  {
+  "model": "api.conference",
+    "pk": 10,
+    "fields": {
+      "user": 4,
+      "name": "Conference on at velit vivamus",
+      "description": "Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem. Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy.",
+      "acronym": "SPXX",
+      "website": "www.a8.net",
+      "email_conference": "ageertz9@cyberchimps.com",
+      "email_chair": "ecalabry9@hhs.gov",
+      "starts": "2020-05-04 4:46 AM",
+      "ends": "2020-06-19 6:47 PM",
+      "created_at": "2020-02-29 10:23:09",
+      "modified_at": "2020-02-29 10:23:09"
+    }
+  },
+  {
+  "model": "api.conference",
+    "pk": 11,
+    "fields": {
+      "user": 3,
+      "name": "Conference on in felis donec semper",
+      "description": "Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui. Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Mauris viverra diam vitae quam. Suspendisse potenti. Nullam porttitor lacus at turpis. Donec posuere metus vitae ipsum. Aliquam non mauris. Morbi non lectus.",
+      "acronym": "HRMNW",
+      "website": "www.cnn.com",
+      "email_conference": "sseilmanna@toplist.cz",
+      "email_chair": "sguillforda@joomla.org",
+      "starts": "2020-05-22 11:14 PM",
+      "ends": "2020-06-03 3:21 AM",
+      "created_at": "2019-09-08 20:17:19",
+      "modified_at": "2019-09-08 20:17:19"
+    }
+  },
+  {
+  "model": "api.conference",
+    "pk": 12,
+    "fields": {
+      "user": 7,
+      "name": "Conference on eget eros elementum pellentesque",
+      "description": "Cras in purus eu magna vulputate luctus. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus vestibulum sagittis sapien.",
+      "acronym": "MHOA",
+      "website": "www.berkeley.edu",
+      "email_conference": "eelwoodb@house.gov",
+      "email_chair": "qsilvermanb@epa.gov",
+      "starts": "2020-05-24 2:17 AM",
+      "ends": "2020-06-22 2:46 PM",
+      "created_at": "2019-12-16 14:52:18",
+      "modified_at": "2019-12-16 14:52:18"
+    }
+  },
+  {
+  "model": "api.conference",
+    "pk": 13,
+    "fields": {
+      "user": 2,
+      "name": "Conference on nisl venenatis lacinia aenean sit",
+      "description": "Morbi vel lectus in quam fringilla rhoncus. Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero.",
+      "acronym": "FCF",
+      "website": "www.tuttocitta.it",
+      "email_conference": "csperwellc@delicious.com",
+      "email_chair": "oleppardc@umich.edu",
+      "starts": "2020-05-15 8:24 AM",
+      "ends": "2020-06-24 9:05 PM",
+      "created_at": "2019-10-28 22:53:30",
+      "modified_at": "2019-10-28 22:53:30"
+    }
+  },
+  {
+  "model": "api.conference",
+    "pk": 14,
+    "fields": {
+      "user": 4,
+      "name": "Conference on dolor morbi vel lectus",
+      "description": "Morbi ut odio. Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo. In blandit ultrices enim.",
+      "acronym": "NMT",
+      "website": "www.artisteer.com",
+      "email_conference": "fmaland@usa.gov",
+      "email_chair": "blavend@europa.eu",
+      "starts": "2020-05-02 7:52 PM",
+      "ends": "2020-06-07 2:39 AM",
+      "created_at": "2020-04-15 04:04:44",
+      "modified_at": "2020-04-15 04:04:44"
+    }
+  },
+  {
+  "model": "api.conference",
+    "pk": 15,
+    "fields": {
+      "user": 3,
+      "name": "Conference on at ipsum ac tellus semper",
+      "description": "Aliquam augue quam, sollicitudin vitae, consectetuer eget, rutrum at, lorem. Integer tincidunt ante vel ipsum. Praesent blandit lacinia erat. Vestibulum sed magna at nunc commodo placerat. Praesent blandit. Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem.",
+      "acronym": "NICK",
+      "website": "www.google.com.au",
+      "email_conference": "rcoreye@wordpress.org",
+      "email_chair": "fjaquemare@scientificamerican.com",
+      "starts": "2020-05-14 4:23 PM",
+      "ends": "2020-06-15 3:22 AM",
+      "created_at": "2019-09-11 00:06:25",
+      "modified_at": "2019-09-11 00:06:25"
+    }
+  },
+  {
+  "model": "api.conference",
+    "pk": 16,
+    "fields": {
+      "user": 1,
+      "name": "Conference on diam neque vestibulum",
+      "description": "Morbi sem mauris, laoreet ut, rhoncus aliquet, pulvinar sed, nisl. Nunc rhoncus dui vel sem. Sed sagittis. Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus. Pellentesque at nulla. Suspendisse potenti.",
+      "acronym": "RDI",
+      "website": "www.joomla.org",
+      "email_conference": "acrabbf@auda.org.au",
+      "email_chair": "nkobelf@theglobeandmail.com",
+      "starts": "2020-05-04 12:12 PM",
+      "ends": "2020-06-21 9:37 PM",
+      "created_at": "2019-08-14 21:06:39",
+      "modified_at": "2019-08-14 21:06:39"
+    }
+  },
+  {
+  "model": "api.conference",
+    "pk": 17,
+    "fields": {
+      "user": 4,
+      "name": "Conference on proin interdum mauris non ligula",
+      "description": "Nulla facilisi. Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque. Quisque porta volutpat erat. Quisque erat eros, viverra eget, congue eget, semper rutrum, nulla. Nunc purus.",
+      "acronym": "RLH",
+      "website": "www.ft.com",
+      "email_conference": "uskeldong@gizmodo.com",
+      "email_chair": "hscatcharg@ucoz.com",
+      "starts": "2020-05-26 10:30 PM",
+      "ends": "2020-06-10 1:27 PM",
+      "created_at": "2019-11-08 02:45:24",
+      "modified_at": "2019-11-08 02:45:24"
+    }
+  },
+  {
+  "model": "api.conference",
+    "pk": 18,
+    "fields": {
+      "user": 1,
+      "name": "Conference on nulla suspendisse potenti cras in",
+      "description": "Duis consequat dui nec nisi volutpat eleifend. Donec ut dolor. Morbi vel lectus in quam fringilla rhoncus.",
+      "acronym": "HIW",
+      "website": "www.etsy.com",
+      "email_conference": "jcartmerh@is.gd",
+      "email_chair": "bcrumbh@mit.edu",
+      "starts": "2020-05-16 3:10 AM",
+      "ends": "2020-06-05 1:26 PM",
+      "created_at": "2019-11-28 03:59:31",
+      "modified_at": "2019-11-28 03:59:31"
+    }
+  },
+  {
+  "model": "api.conference",
+    "pk": 19,
+    "fields": {
+      "user": 1,
+      "name": "Conference on donec dapibus duis at velit eu est",
+      "description": "Morbi a ipsum. Integer a nibh. In quis justo. Maecenas rhoncus aliquam lacus. Morbi quis tortor id nulla ultrices aliquet. Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui. Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc.",
+      "acronym": "INOV",
+      "website": "www.behance.net",
+      "email_conference": "mvandevliesi@who.int",
+      "email_chair": "ckeddyi@newyorker.com",
+      "starts": "2020-05-11 4:07 AM",
+      "ends": "2020-06-18 1:32 AM",
+      "created_at": "2019-10-07 13:30:11",
+      "modified_at": "2019-10-07 13:30:11"
+    }
+  },
+  {
+  "model": "api.conference",
+    "pk": 20,
+    "fields": {
+      "user": 4,
+      "name": "Conference on fringilla rhoncus mauris enim leo rhoncus",
+      "description": "Morbi vel lectus in quam fringilla rhoncus. Mauris enim leo, rhoncus sed, vestibulum sit amet, cursus id, turpis. Integer aliquet, massa id lobortis convallis, tortor risus dapibus augue, vel accumsan tellus nisi eu orci. Mauris lacinia sapien quis libero.",
+      "acronym": "DEA",
+      "website": "www.globo.com",
+      "email_conference": "cdebischopj@comcast.net",
+      "email_chair": "corhrtj@parallels.com",
+      "starts": "2020-05-12 7:02 AM",
+      "ends": "2020-06-06 5:05 AM",
+      "created_at": "2019-08-06 21:41:51",
+      "modified_at": "2019-08-06 21:41:51"
+    }
+  },
+  {
+  "model": "api.conference",
+    "pk": 21,
+    "fields": {
+      "user": 4,
+      "name": "Conference on lacinia erat vestibulum sed",
+      "description": "In blandit ultrices enim. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Proin interdum mauris non ligula pellentesque ultrices. Phasellus id sapien in sapien iaculis congue. Vivamus metus arcu, adipiscing molestie, hendrerit at, vulputate vitae, nisl. Aenean lectus. Pellentesque eget nunc. Donec quis orci eget orci vehicula condimentum. Curabitur in libero ut massa volutpat convallis. Morbi odio odio, elementum eu, interdum eu, tincidunt in, leo.",
+      "acronym": "BK",
+      "website": "www.prnewswire.com",
+      "email_conference": "mbrunnsteink@mlb.com",
+      "email_chair": "vpoterk@google.de",
+      "starts": "2020-05-26 1:29 PM",
+      "ends": "2020-06-24 9:00 PM",
+      "created_at": "2020-05-26 12:51:31",
+      "modified_at": "2020-05-26 12:51:31"
+    }
+  },
+  {
+  "model": "api.conference",
+    "pk": 22,
+    "fields": {
+      "user": 10,
+      "name": "Conference on orci vehicula condimentum",
+      "description": "Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem. Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit.",
+      "acronym": "THGA",
+      "website": "www.yahoo.com",
+      "email_conference": "klongegal@who.int",
+      "email_chair": "mstokelll@usgs.gov",
+      "starts": "2020-05-20 6:25 AM",
+      "ends": "2020-06-06 7:07 PM",
+      "created_at": "2019-08-04 22:45:19",
+      "modified_at": "2019-08-04 22:45:19"
+    }
+  },
+  {
+  "model": "api.conference",
+    "pk": 23,
+    "fields": {
+      "user": 3,
+      "name": "Conference on tincidunt in leo maecenas pulvinar lobortis est",
+      "description": "Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus.",
+      "acronym": "LSXMB",
+      "website": "www.ocn.ne.jp",
+      "email_conference": "gediem@forbes.com",
+      "email_chair": "jcharkm@senate.gov",
+      "starts": "2020-05-04 1:52 AM",
+      "ends": "2020-06-05 2:53 AM",
+      "created_at": "2019-12-24 15:29:16",
+      "modified_at": "2019-12-24 15:29:16"
+    }
+  },
+  {
+  "model": "api.conference",
+    "pk": 24,
+    "fields": {
+      "user": 2,
+      "name": "Conference on pellentesque quisque porta volutpat erat",
+      "description": "Proin eu mi. Nulla ac enim. In tempor, turpis nec euismod scelerisque, quam turpis adipiscing lorem, vitae mattis nibh ligula nec sem. Duis aliquam convallis nunc. Proin at turpis a pede posuere nonummy. Integer non velit.",
+      "acronym": "MCEP",
+      "website": "www.nydailynews.com",
+      "email_conference": "wbeggann@reuters.com",
+      "email_chair": "lsuggen@wix.com",
+      "starts": "2020-05-09 9:24 AM",
+      "ends": "2020-06-08 11:34 PM",
+      "created_at": "2020-06-26 22:43:25",
+      "modified_at": "2020-06-26 22:43:25"
+    }
+  },
+  {
+  "model": "api.conference",
+    "pk": 25,
+    "fields": {
+      "user": 8,
+      "name": "Conference on sapien cum sociis natoque penatibus",
+      "description": "Proin risus. Praesent lectus. Vestibulum quam sapien, varius ut, blandit non, interdum in, ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Duis faucibus accumsan odio. Curabitur convallis.",
+      "acronym": "EFC",
+      "website": "www.delicious.com",
+      "email_conference": "otreebyo@ameblo.jp",
+      "email_chair": "mfrillo@list-manage.com",
+      "starts": "2020-05-12 1:05 PM",
+      "ends": "2020-06-16 2:18 AM",
+      "created_at": "2020-03-21 21:29:50",
+      "modified_at": "2020-03-21 21:29:50"
+    }
+  },
+  {
+  "model": "api.conference",
+    "pk": 26,
+    "fields": {
+      "user": 8,
+      "name": "Conference on habitasse platea dictumst",
+      "description": "Nam nulla. Integer pede justo, lacinia eget, tincidunt eget, tempus vel, pede. Morbi porttitor lorem id ligula. Suspendisse ornare consequat lectus. In est risus, auctor sed, tristique in, tempus sit amet, sem. Fusce consequat. Nulla nisl. Nunc nisl.",
+      "acronym": "NWY",
+      "website": "www.constantcontact.com",
+      "email_conference": "hsaterweytep@diigo.com",
+      "email_chair": "shampsteadp@wikia.com",
+      "starts": "2020-05-30 4:21 AM",
+      "ends": "2020-06-05 4:08 PM",
+      "created_at": "2019-12-12 00:13:49",
+      "modified_at": "2019-12-12 00:13:49"
+    }
+  },
+  {
+  "model": "api.conference",
+    "pk": 27,
+    "fields": {
+      "user": 1,
+      "name": "Conference on et magnis dis",
+      "description": "Fusce consequat. Nulla nisl. Nunc nisl. Duis bibendum, felis sed interdum venenatis, turpis enim blandit mi, in porttitor pede justo eu massa. Donec dapibus. Duis at velit eu est congue elementum.",
+      "acronym": "OPHT",
+      "website": "www.berkeley.edu",
+      "email_conference": "cmaccallesterq@com.com",
+      "email_chair": "fearlandq@bloglines.com",
+      "starts": "2020-05-21 9:36 AM",
+      "ends": "2020-06-15 11:51 AM",
+      "created_at": "2020-01-31 23:54:02",
+      "modified_at": "2020-01-31 23:54:02"
+    }
+  },
+  {
+  "model": "api.conference",
+    "pk": 28,
+    "fields": {
+      "user": 4,
+      "name": "Conference on amet justo morbi",
+      "description": "Morbi quis tortor id nulla ultrices aliquet. Maecenas leo odio, condimentum id, luctus nec, molestie sed, justo. Pellentesque viverra pede ac diam. Cras pellentesque volutpat dui. Maecenas tristique, est et tempus semper, est quam pharetra magna, ac consequat metus sapien ut nunc.",
+      "acronym": "CVNA",
+      "website": "www.nature.com",
+      "email_conference": "cwhitwamr@jimdo.com",
+      "email_chair": "escaifer@hc360.com",
+      "starts": "2020-05-21 4:08 PM",
+      "ends": "2020-06-10 11:33 PM",
+      "created_at": "2019-08-16 14:37:48",
+      "modified_at": "2019-08-16 14:37:48"
+    }
+  },
+  {
+  "model": "api.conference",
+    "pk": 29,
+    "fields": {
+      "user": 3,
+      "name": "Conference on vehicula condimentum curabitur in libero ut massa",
+      "description": "Vestibulum rutrum rutrum neque. Aenean auctor gravida sem. Praesent id massa id nisl venenatis lacinia. Aenean sit amet justo. Morbi ut odio. Cras mi pede, malesuada in, imperdiet et, commodo vulputate, justo.",
+      "acronym": "PAA",
+      "website": "www.weebly.com",
+      "email_conference": "lghiroldis@sphinn.com",
+      "email_chair": "hblindes@ft.com",
+      "starts": "2020-05-21 5:01 PM",
+      "ends": "2020-06-06 8:40 PM",
+      "created_at": "2020-06-16 22:27:42",
+      "modified_at": "2020-06-16 22:27:42"
+    }
+  },
+  {
+  "model": "api.conference",
+    "pk": 30,
+    "fields": {
+      "user": 6,
+      "name": "Conference on odio consequat varius integer ac leo pellentesque",
+      "description": "Nam congue, risus semper porta volutpat, quam pede lobortis ligula, sit amet eleifend pede libero quis orci. Nullam molestie nibh in lectus. Pellentesque at nulla. Suspendisse potenti. Cras in purus eu magna vulputate luctus.",
+      "acronym": "MUR",
+      "website": "www.geocities.com",
+      "email_conference": "emounsiet@wikia.com",
+      "email_chair": "esmealt@posterous.com",
+      "starts": "2020-05-02 10:54 AM",
+      "ends": "2020-06-18 7:01 AM",
+      "created_at": "2020-06-19 23:03:48",
+      "modified_at": "2020-06-19 23:03:48"
+    }
+  }
+]

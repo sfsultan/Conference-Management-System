@@ -1,0 +1,82 @@
+[
+  {
+  "model": "api.user",
+    "pk": 2,
+    "fields": {
+      "username": "fahd",
+      "password": "pbkdf2_sha256$180000$eKsZyzwolkeb$T7GmP1YRrSodZGA4q22LfHpuZDK+0MR6f1tMAooowRs="
+    }
+  },
+  {
+  "model": "api.user",
+    "pk": 3,
+    "fields": {
+      "username": "zaid",
+      "password": "pbkdf2_sha256$180000$eKsZyzwolkeb$T7GmP1YRrSodZGA4q22LfHpuZDK+0MR6f1tMAooowRs="
+    }
+  },
+  {
+  "model": "api.user",
+    "pk": 4,
+    "fields": {
+      "username": "abi",
+      "password": "pbkdf2_sha256$180000$eKsZyzwolkeb$T7GmP1YRrSodZGA4q22LfHpuZDK+0MR6f1tMAooowRs="
+    }
+  },
+  {
+  "model": "api.user",
+    "pk": 5,
+    "fields": {
+      "username": "sultan",
+      "password": "pbkdf2_sha256$180000$eKsZyzwolkeb$T7GmP1YRrSodZGA4q22LfHpuZDK+0MR6f1tMAooowRs="
+    }
+  },
+  {
+  "model": "api.user",
+    "pk": 6,
+    "fields": {
+      "username": "yasmin",
+      "password": "pbkdf2_sha256$180000$eKsZyzwolkeb$T7GmP1YRrSodZGA4q22LfHpuZDK+0MR6f1tMAooowRs="
+    }
+  },
+  {
+  "model": "api.user",
+    "pk": 7,
+    "fields": {
+      "username": "khobaib",
+      "password": "pbkdf2_sha256$180000$eKsZyzwolkeb$T7GmP1YRrSodZGA4q22LfHpuZDK+0MR6f1tMAooowRs="
+    }
+  },
+  {
+  "model": "api.user",
+    "pk": 8,
+    "fields": {
+      "username": "ezza",
+      "password": "pbkdf2_sha256$180000$eKsZyzwolkeb$T7GmP1YRrSodZGA4q22LfHpuZDK+0MR6f1tMAooowRs="
+    }
+  },
+  {
+  "model": "api.user",
+    "pk": 9,
+    "fields": {
+      "username": "anya",
+      "password": "pbkdf2_sha256$180000$eKsZyzwolkeb$T7GmP1YRrSodZGA4q22LfHpuZDK+0MR6f1tMAooowRs="
+    }
+  },
+  {
+  "model": "api.user",
+    "pk": 10,
+    "fields": {
+      "username": "yasir",
+      "password": "pbkdf2_sha256$180000$eKsZyzwolkeb$T7GmP1YRrSodZGA4q22LfHpuZDK+0MR6f1tMAooowRs="
+    }
+  },
+  {
+  "model": "api.user",
+    "pk": 11,
+    "fields": {
+      "username": "akhlaq",
+      "password": "pbkdf2_sha256$180000$eKsZyzwolkeb$T7GmP1YRrSodZGA4q22LfHpuZDK+0MR6f1tMAooowRs="
+    }
+  }
+]
