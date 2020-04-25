@@ -4,7 +4,7 @@ from rest_framework import serializers
 class ProfileSerializer(serializers.ModelSerializer):
     # user = serializers.HyperlinkedRelatedField(many=False, read_only=True, view_name="user-detail")
     user = serializers.PrimaryKeyRelatedField(many=False, read_only=True)
-    
+
     class Meta:
         model = Profile
         fields = ['id', 'user', 'full_name', 'city', 'organization', 'bio']
@@ -38,7 +38,7 @@ class VenueSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Venue
         fields = ['id', 'conference', 'name', 'description' ]
-        
+
 
 
 
@@ -46,7 +46,7 @@ class VenueSerializer(serializers.HyperlinkedModelSerializer):
 
 class AgendaSerializer(serializers.HyperlinkedModelSerializer):
     conference = serializers.PrimaryKeyRelatedField(many=False, read_only=True)
-    venue = serializers.PrimaryKeyRelatedField(many=False, read_only=True)
+    venue = serializers.PrimaryKeyRelatedField(many=False, queryset=Venue.objects.all())
 
     class Meta:
         model = Agenda

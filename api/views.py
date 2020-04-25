@@ -207,12 +207,9 @@ class AgendaListView(APIView):
     def post(self, request, conference_id, format=None):
         conference = self.get_conference(conference_id)
         self.check_object_permissions(request, conference)
-        
-        print("@@@@@@@@@@@@@@@@@@@@@@@@@")
-        print(request.data)
-        # venue = self.get_venue(request.data['venue'])
-        # self.check_object_permissions(request, venue)
 
+        venue = self.get_venue(request.data['venue'])
+        self.check_object_permissions(request, venue)
         serializer = AgendaSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save(conference=conference)
