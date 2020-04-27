@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import Http404
 from django.db.models import Q
 from django.db import IntegrityError
+from django.shortcuts import get_object_or_404
 
 
 from rest_framework.views import APIView
@@ -15,7 +16,7 @@ from friendship.models import Friend, Follow, Block
 
 from .models import User, Conference, Profile, Venue, Agenda
 from rest_framework import viewsets
-from .serializers import UserSerializer, ConferenceSerializer, ProfileSerializer, VenueSerializer, AgendaSerializer,  ConnectionRequestSerializer
+from .serializers import UserSerializer, ConferenceSerializer, ProfileSerializer, VenueSerializer, AgendaSerializer,  FriendRequestSerializer
 from .permissions import IsOwner, IsOwnerOfConference
 
 
@@ -296,8 +297,13 @@ class ConnectionListView(APIView):
         return Response(serializer.data)
 
     def post(self, request, format=None):
-        other_user = self.get_user()
-        friend_obj = Friend.objects.add_friend(request.user, other_user)
-        return Response(ConnectionRequestSerializer(friend_obj).data, status=status.HTTP_201_CREATED)
-
-
+        serializer = FriendRequestSerializer(data=request.data)
+        if serializer.is_valid():
+            other_user = self.get_user(request)
+            friend_obj = Friend.objects.add_friend( request.user, get_object_or_404(get_user_model(), pk=request.data['user_id']),
+            message=request.data.get('message', '')
+        )
+            # serializer.save()
+            return Response(FriendRequestSerializer(friend_obj).data, status=status.HTTP_201_CREATED)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

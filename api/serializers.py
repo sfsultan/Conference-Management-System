@@ -51,7 +51,7 @@ class AgendaSerializer(serializers.ModelSerializer):
         ordering = ['id']
 
 
-class ConnectionRequestSerializer(serializers.ModelSerializer):
+class FriendRequestSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = FriendshipRequest
