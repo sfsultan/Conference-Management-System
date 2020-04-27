@@ -10,10 +10,13 @@ from rest_framework import status
 from rest_framework.settings import api_settings
 
 
+from friendship.models import Friend, Follow, Block
+
+
 from .models import User, Conference, Profile, Venue, Agenda
 from rest_framework import viewsets
-from .serializers import UserSerializer, ConferenceSerializer, ProfileSerializer, VenueSerializer, AgendaSerializer
-from .permissions import IsOwner
+from .serializers import UserSerializer, ConferenceSerializer, ProfileSerializer, VenueSerializer, AgendaSerializer,  ConnectionRequestSerializer
+from .permissions import IsOwner, IsOwnerOfConference
 
 
 class UserView(APIView):
@@ -36,6 +39,7 @@ class UserView(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
 class ProfileView(APIView):
 
     def get_profile(self, pk):
@@ -51,11 +55,13 @@ class ProfileView(APIView):
 
     def patch(self, request, format=None):
         profile = self.get_profile(request.user.id)
-        serializer = ProfileSerializer(profile, data=request.data, partial=True)
+        serializer = ProfileSerializer(
+            profile, data=request.data, partial=True)
         if serializer.is_valid():
             serializer.save(user=request.user)
             return Response(serializer.data, status=status.HTTP_204_NO_CONTENT)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
 
 class MyConferenceListView(APIView):
 
@@ -71,11 +77,13 @@ class MyConferenceListView(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
 class MyConferenceDetailView(APIView):
     permission_classes = [IsOwner]
     """
     Retrieve, update or delete a snippet instance.
     """
+
     def get_conference(self, pk):
         try:
             conference = Conference.objects.get(pk=pk)
@@ -102,14 +110,17 @@ class MyConferenceDetailView(APIView):
         conference.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+
 class OtherConferenceListView(APIView):
 
     def get(self, request, format=None):
-        conferences = Conference.objects.exclude(user=self.request.user).filter(public=True)
+        conferences = Conference.objects.exclude(
+            user=self.request.user).filter(public=True)
 
         search = request.query_params.get('search', None)
         if search is not None:
-            conferences = conferences.filter(Q(name__icontains=search) | Q(description__icontains=search))
+            conferences = conferences.filter(
+                Q(name__icontains=search) | Q(description__icontains=search))
 
         pagination_class = api_settings.DEFAULT_PAGINATION_CLASS
         paginator = pagination_class()
@@ -117,6 +128,7 @@ class OtherConferenceListView(APIView):
 
         serializer = ConferenceSerializer(page, many=True)
         return Response(serializer.data)
+
 
 class VenueListView(APIView):
     permission_classes = [IsOwner]
@@ -147,11 +159,13 @@ class VenueListView(APIView):
                 return Response({'detail': 'Venue already exists'}, status=status.HTTP_400_BAD_REQUEST)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
 class VenueDetailView(APIView):
     permission_classes = [IsOwner]
     """
     Retrieve, update or delete a snippet instance.
     """
+
     def get_venue(self, pk):
         try:
             venue = Venue.objects.get(pk=pk)
@@ -179,6 +193,7 @@ class VenueDetailView(APIView):
         self.check_object_permissions(request, venue)
         venue.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
 
 class AgendaListView(APIView):
     permission_classes = [IsOwner]
@@ -208,20 +223,32 @@ class AgendaListView(APIView):
         conference = self.get_conference(conference_id)
         self.check_object_permissions(request, conference)
 
-        venue = self.get_venue(request.data['venue'])
-        self.check_object_permissions(request, venue)
         serializer = AgendaSerializer(data=request.data)
+
         if serializer.is_valid():
+            venue = self.get_venue(request.data['venue'])
+            if venue.conference != conference:
+                return Response({'detail': 'Venue does not belong to this conference'}, status=status.HTTP_400_BAD_REQUEST)
+
             serializer.save(conference=conference)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
 class AgendaDetailView(APIView):
-    permission_classes = [IsOwner]
+    permission_classes = [IsOwnerOfConference]
     """
     Retrieve, update or delete a snippet instance.
     """
-    def get_object(self, pk):
+
+    def get_agenda(self, pk):
+        try:
+            agenda = Agenda.objects.get(pk=pk)
+            return agenda
+        except Agenda.DoesNotExist:
+            raise Http404
+
+    def get_venue(self, pk):
         try:
             venue = Venue.objects.get(pk=pk)
             return venue
@@ -229,22 +256,48 @@ class AgendaDetailView(APIView):
             raise Http404
 
     def get(self, request, pk, format=None):
-        venue = self.get_object(pk)
-        self.check_object_permissions(request, venue)
-        serializer = VenueSerializer(venue)
+        agenda = self.get_agenda(pk)
+        self.check_object_permissions(request, agenda)
+        serializer = AgendaSerializer(agenda)
         return Response(serializer.data)
 
     def put(self, request, pk, format=None):
-        venue = self.get_object(pk)
-        self.check_object_permissions(request, venue)
-        serializer = VenueSerializer(venue, data=request.data)
+        agenda = self.get_agenda(pk)
+        self.check_object_permissions(request, agenda)
+        serializer = AgendaSerializer(agenda, data=request.data)
         if serializer.is_valid():
+            venue = self.get_venue(request.data['venue'])
+            if venue.conference != agenda.conference:
+                return Response({'detail': 'Venue does not belong to this conference'}, status=status.HTTP_400_BAD_REQUEST)
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, pk, format=None):
-        venue = self.get_object(pk)
-        self.check_object_permissions(request, venue)
-        venue.delete()
+        agenda = self.get_agenda(pk)
+        self.check_object_permissions(request, agenda)
+        agenda.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class ConnectionListView(APIView):
+
+    def get_user(self, pk):
+        try:
+            return User.objects.get(pk=pk)
+        except User.DoesNotExist:
+            raise Http404
+    
+
+    def get(self, request, format=None):
+        o
+        connections = Connection.objects.filter(Q(user=request.user) | Q(connected_user=request.user))
+        serializer = ConnectionSerializer(connections, many=True)
+        return Response(serializer.data)
+
+    def post(self, request, format=None):
+        other_user = self.get_user()
+        friend_obj = Friend.objects.add_friend(request.user, other_user)
+        return Response(ConnectionRequestSerializer(friend_obj).data, status=status.HTTP_201_CREATED)
+
+

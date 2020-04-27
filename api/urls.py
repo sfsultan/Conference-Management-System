@@ -22,13 +22,13 @@ urlpatterns = [
 
     path('other-conferences/', views.OtherConferenceListView.as_view()),
 
-    path('venues/list/<int:conference_id>/', views.VenueListView.as_view()),
-
+    path('venues/for/<int:conference_id>/', views.VenueListView.as_view()),
     path('venues/<int:pk>/', views.VenueDetailView.as_view()),
 
-    path('agenda/list/<int:conference_id>/', views.AgendaListView.as_view()),
-
+    path('agenda/for/<int:conference_id>/', views.AgendaListView.as_view()),
     path('agenda/<int:pk>/', views.AgendaDetailView.as_view()),
+
+    path('connections/', views.ConnectionListView.as_view()),
 
     # path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]

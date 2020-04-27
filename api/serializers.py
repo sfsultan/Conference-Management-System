@@ -1,6 +1,8 @@
 from .models import User, Profile, Conference, Venue, Agenda
 from rest_framework import serializers
 
+from friendship.models import FriendshipRequest
+
 class ProfileSerializer(serializers.ModelSerializer):
     # user = serializers.HyperlinkedRelatedField(many=False, read_only=True, view_name="user-detail")
     user = serializers.PrimaryKeyRelatedField(many=False, read_only=True)
@@ -19,19 +21,7 @@ class UserSerializer(serializers.ModelSerializer):
         ordering = ['username']
 
 
-class ConferenceSerializer(serializers.HyperlinkedModelSerializer):
-    user = serializers.SlugRelatedField(many=False, read_only=True, slug_field='username')
-    venue = serializers.SlugRelatedField(many=True, read_only=True, slug_field='name')
-    agenda = serializers.SlugRelatedField(many=True, read_only=True, slug_field='title')
-
-    class Meta:
-        model = Conference
-        fields = ['id', 'user', 'venue', 'agenda', 'name', 'description', 'acronym', 'website', 'email_conference', 'email_chair', 'public', 'starts', 'ends']
-        order_by = ['acronym']
-
-
-
-class VenueSerializer(serializers.HyperlinkedModelSerializer):
+class VenueSerializer(serializers.ModelSerializer):
     # conference = serializers.HyperlinkedRelatedField(many=False, queryset=Conference.objects.all(), view_name="conference-detail")
     conference = serializers.PrimaryKeyRelatedField(many=False, read_only=True)
 
@@ -40,18 +30,29 @@ class VenueSerializer(serializers.HyperlinkedModelSerializer):
         fields = ['id', 'conference', 'name', 'description' ]
 
 
+class ConferenceSerializer(serializers.ModelSerializer):
+    user = serializers.SlugRelatedField(many=False, read_only=True, slug_field='username')
+    venue = VenueSerializer(many=True, read_only=True)
+    agenda = serializers.SlugRelatedField(many=True, read_only=True, slug_field='title')
+
+    class Meta:
+        model = Conference
+        fields = ['id', 'user', 'venue', 'agenda', 'name', 'description', 'acronym', 'website', 'email_conference', 'email_chair', 'public', 'starts', 'ends']
+        order_by = ['acronym']
 
 
-
-
-class AgendaSerializer(serializers.HyperlinkedModelSerializer):
+class AgendaSerializer(serializers.ModelSerializer):
     conference = serializers.PrimaryKeyRelatedField(many=False, read_only=True)
     venue = serializers.PrimaryKeyRelatedField(many=False, queryset=Venue.objects.all())
 
     class Meta:
         model = Agenda
-        fields = ['title', 'abstract', 'author', 'presenter', 'keywords', 'starts', 'ends', 'keywords', 'conference', 'venue']
+        fields = ['id', 'title', 'abstract', 'author', 'presenter', 'keywords', 'starts', 'ends', 'keywords', 'conference', 'venue']
         ordering = ['id']
 
 
+class ConnectionRequestSerializer(serializers.ModelSerializer):
 
+    class Meta:
+        model = FriendshipRequest
+        fields = ('id', 'from_user', 'to_user', 'message', 'created', 'rejected', 'viewed')
