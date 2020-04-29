@@ -1,7 +1,7 @@
 from .models import User, Profile, Conference, Venue, Agenda
 from rest_framework import serializers
 
-from friendship.models import FriendshipRequest
+from friendship.models import FriendshipRequest, Friend
 
 class ProfileSerializer(serializers.ModelSerializer):
     # user = serializers.HyperlinkedRelatedField(many=False, read_only=True, view_name="user-detail")
@@ -13,11 +13,9 @@ class ProfileSerializer(serializers.ModelSerializer):
 
 
 class UserSerializer(serializers.ModelSerializer):
-    profile = ProfileSerializer(many=False, read_only=True)
-
     class Meta:
         model = User
-        fields = ['username', 'profile']
+        fields = ['id','username']
         ordering = ['username']
 
 
@@ -32,7 +30,6 @@ class VenueSerializer(serializers.ModelSerializer):
 
 class ConferenceSerializer(serializers.ModelSerializer):
     user = serializers.SlugRelatedField(many=False, read_only=True, slug_field='username')
-    venue = VenueSerializer(many=True, read_only=True)
     agenda = serializers.SlugRelatedField(many=True, read_only=True, slug_field='title')
 
     class Meta:
@@ -51,7 +48,7 @@ class AgendaSerializer(serializers.ModelSerializer):
         ordering = ['id']
 
 
-class FriendRequestSerializer(serializers.ModelSerializer):
+class FriendshipRequestSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = FriendshipRequest
