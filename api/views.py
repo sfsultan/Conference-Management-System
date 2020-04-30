@@ -144,7 +144,7 @@ class OtherConferenceViewSet(viewsets.ViewSet):
         if search is not None:
             conferences = conferences.filter(
                 Q(name__icontains=search) | Q(description__icontains=search))
-        
+
         pagination_class = api_settings.DEFAULT_PAGINATION_CLASS
         paginator = pagination_class()
         page = paginator.paginate_queryset(conferences, request)
@@ -177,119 +177,112 @@ class VenueViewSet(viewsets.ViewSet):
         venue.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+class AgendaViewSet(viewsets.ViewSet):
 
-class AgendaListView(APIView):
-    permission_classes = [IsOwner]
-
-    def get_conference(self, pk):
-        try:
-            conference = Conference.objects.get(pk=pk)
-            return conference
-        except Conference.DoesNotExist:
-            raise Http404
-
-    def get_venue(self, pk):
-        try:
-            venue = Venue.objects.get(pk=pk)
-            return venue
-        except Venue.DoesNotExist:
-            raise Http404
-
-    def get(self, request, conference_id, format=None):
-        conference = self.get_conference(conference_id)
-        self.check_object_permissions(request, conference)
-        agenda = Agenda.objects.filter(conference=conference)
-        serializer = AgendaSerializer(agenda, many=True)
-        return Response(serializer.data)
-
-    def post(self, request, conference_id, format=None):
-        conference = self.get_conference(conference_id)
-        self.check_object_permissions(request, conference)
-
-        serializer = AgendaSerializer(data=request.data)
-
-        if serializer.is_valid():
-            venue = self.get_venue(request.data['venue'])
-            if venue.conference != conference:
-                return Response({'detail': 'Venue does not belong to this conference'}, status=status.HTTP_400_BAD_REQUEST)
-
-            serializer.save(conference=conference)
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
-
-class AgendaDetailView(APIView):
     permission_classes = [IsOwnerOfConference]
-    """
-    Retrieve, update or delete a snippet instance.
-    """
 
-    def get_agenda(self, pk):
-        try:
-            agenda = Agenda.objects.get(pk=pk)
-            return agenda
-        except Agenda.DoesNotExist:
-            raise Http404
-
-    def get_venue(self, pk):
-        try:
-            venue = Venue.objects.get(pk=pk)
-            return venue
-        except Venue.DoesNotExist:
-            raise Http404
-
-    def get(self, request, pk, format=None):
-        agenda = self.get_agenda(pk)
+    def retrieve(self, request, pk):
+        agenda = get_object_or_404(Agenda, pk=pk)
         self.check_object_permissions(request, agenda)
         serializer = AgendaSerializer(agenda)
         return Response(serializer.data)
 
-    def put(self, request, pk, format=None):
-        agenda = self.get_agenda(pk)
+    def update(self, request, pk):
+        agenda = get_object_or_404(Agenda, pk=pk)
         self.check_object_permissions(request, agenda)
         serializer = AgendaSerializer(agenda, data=request.data)
         if serializer.is_valid():
-            venue = self.get_venue(request.data['venue'])
-            if venue.conference != agenda.conference:
-                return Response({'detail': 'Venue does not belong to this conference'}, status=status.HTTP_400_BAD_REQUEST)
             serializer.save()
             return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    def delete(self, request, pk, format=None):
-        agenda = self.get_agenda(pk)
+    def destroy(self, request, pk):
+        agenda = get_object_or_404(Agenda, pk=pk)
         self.check_object_permissions(request, agenda)
         agenda.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+class FriendViewSet(viewsets.ViewSet):
 
-class FriendListView(APIView):
-
-    def get_user(self, pk):
-        try:
-            return User.objects.get(pk=pk)
-        except User.DoesNotExist:
-            raise Http404
-    
-
-    def get(self, request, format=None):
+    def list(self, request):
         friends = Friend.objects.friends(request.user)
-        print('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@')
-        print(friends)
         serializer = UserSerializer(friends, many=True)
         return Response(serializer.data)
 
-    def post(self, request, format=None):
-        other_user = self.get_user(request.data['user_id'])
-        try:
-            friend_obj = Friend.objects.add_friend( request.user, other_user, message=request.data.get('message', '') )
-        except ValidationError as e:
-            return Response({'detail': e}, status=status.HTTP_400_BAD_REQUEST)
-        except AlreadyExistsError as e:
-            return Response({'detail': str(e)}, status=status.HTTP_400_BAD_REQUEST)
+    @action(detail=False)
+    def requests(self, request):
+        friend_requests = Friend.objects.unrejected_requests(user=request.user)
+        return Response(FriendshipRequestSerializer(friend_requests, many=True).data)
 
-        return Response(FriendshipRequestSerializer(friend_obj).data, status=status.HTTP_201_CREATED)
+    @action(detail=False)
+    def sent_requests(self, request):
+        friend_requests = Friend.objects.sent_requests(user=request.user)
+        return Response(FriendshipRequestSerializer(friend_requests, many=True).data)
+
+    @action(detail=False)
+    def rejected_requests(self, request):
+        friend_requests = Friend.objects.rejected_requests(user=request.user)
+        return Response(FriendshipRequestSerializer(friend_requests, many=True).data)
+
+    def create(self, request):
+        """
+        Creates a friend request
+        POST data:
+        - user_id
+        - message
+        """
+
+        friend_obj = Friend.objects.add_friend(
+            request.user,                                                     # The sender
+            get_object_or_404(User, pk=request.data['user_id']),  # The recipient
+            message=request.data.get('message', '')
+        )
+
+        return Response(
+            FriendshipRequestSerializer(friend_obj).data,
+            status.HTTP_201_CREATED
+        )
+
+    def destroy(self, request, pk=None):
+        """
+        Deletes a friend relationship
+        The user id specified in the URL will be removed from the current user's friends
+        """
+
+        user_friend = get_object_or_404(User, pk=pk)
+
+        if Friend.objects.remove_friend(request.user, user_friend):
+            message = 'deleted'
+            status_code = status.HTTP_204_NO_CONTENT
+        else:
+            message = 'not deleted'
+            status_code = status.HTTP_304_NOT_MODIFIED
+
+        return Response(
+            {"message": message},
+            status=status_code
+        )
 
 
+class FriendshipRequestViewSet(viewsets.ViewSet):
+    """
+    ViewSet for FriendshipRequest model
+    """
 
+    @action(detail=True, methods=['post'])
+    def accept(self, request, pk=None):
+        friendship_request = get_object_or_404(FriendshipRequest, pk=pk, to_user=request.user)
+        friendship_request.accept()
+        return Response(
+            FriendshipRequestSerializer(friendship_request).data,
+            status.HTTP_201_CREATED
+        )
 
+    @action(detail=True, methods=['post'])
+    def reject(self, request, pk=None):
+        friendship_request = get_object_or_404(FriendshipRequest, pk=pk, to_user=request.user)
+        friendship_request.reject()
+        return Response(
+            FriendshipRequestSerializer(friendship_request).data,
+            status.HTTP_201_CREATED
+        )
