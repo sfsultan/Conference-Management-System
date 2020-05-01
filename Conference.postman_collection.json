@@ -42,9 +42,12 @@
 			"response": []
 		},
 		{
-			"name": "User Register",
+			"name": "User GET CREATE",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
-				"method": "POST",
+				"method": "GET",
 				"header": [
 					{
 						"key": "website",
@@ -58,7 +61,7 @@
 					"formdata": [
 						{
 							"key": "username",
-							"value": "test211",
+							"value": "test1211",
 							"type": "text"
 						},
 						{
@@ -84,7 +87,7 @@
 			"response": []
 		},
 		{
-			"name": "Profile Get",
+			"name": "Profile GET",
 			"request": {
 				"method": "GET",
 				"header": [
@@ -96,14 +99,14 @@
 					}
 				],
 				"url": {
-					"raw": "localhost:8000/api/user/",
+					"raw": "localhost:8000/api/profile/",
 					"host": [
 						"localhost"
 					],
 					"port": "8000",
 					"path": [
 						"api",
-						"user",
+						"profile",
 						""
 					]
 				}
@@ -111,9 +114,9 @@
 			"response": []
 		},
 		{
-			"name": "Profile Update",
+			"name": "Profile UPDATE",
 			"request": {
-				"method": "PUT",
+				"method": "PATCH",
 				"header": [
 					{
 						"key": "website",
@@ -141,12 +144,6 @@
 							"type": "text"
 						},
 						{
-							"key": "user",
-							"value": "2",
-							"type": "text",
-							"disabled": true
-						},
-						{
 							"key": "full_name",
 							"value": "Fahd Sultan",
 							"type": "text"
@@ -154,15 +151,15 @@
 					]
 				},
 				"url": {
-					"raw": "localhost:8000/api/profiles/2/",
+					"raw": "localhost:8000/api/profile/change/",
 					"host": [
 						"localhost"
 					],
 					"port": "8000",
 					"path": [
 						"api",
-						"profiles",
-						"2",
+						"profile",
+						"change",
 						""
 					]
 				}
@@ -170,7 +167,7 @@
 			"response": []
 		},
 		{
-			"name": "My Conference List Create",
+			"name": "My Conference LIST CREATE",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -179,8 +176,8 @@
 				"header": [
 					{
 						"key": "website",
-						"value": "www.myconference.com",
 						"type": "text",
+						"value": "www.myconference.com",
 						"disabled": true
 					}
 				],
@@ -245,14 +242,14 @@
 					]
 				},
 				"url": {
-					"raw": "localhost:8000/api/my-conferences/",
+					"raw": "localhost:8000/api/my_conferences/",
 					"host": [
 						"localhost"
 					],
 					"port": "8000",
 					"path": [
 						"api",
-						"my-conferences",
+						"my_conferences",
 						""
 					]
 				}
@@ -260,7 +257,7 @@
 			"response": []
 		},
 		{
-			"name": "My Conference Update",
+			"name": "My Conference GET UPDATE DESTROY",
 			"request": {
 				"method": "PUT",
 				"header": [
@@ -341,14 +338,14 @@
 					]
 				},
 				"url": {
-					"raw": "localhost:8000/api/my-conferences/31/",
+					"raw": "localhost:8000/api/my_conferences/31/",
 					"host": [
 						"localhost"
 					],
 					"port": "8000",
 					"path": [
 						"api",
-						"my-conferences",
+						"my_conferences",
 						"31",
 						""
 					]
@@ -357,7 +354,96 @@
 			"response": []
 		},
 		{
-			"name": "Venue List Create",
+			"name": "Other Conferences",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "website",
+						"value": "www.myconference.com",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"url": {
+					"raw": "localhost:8000/api/other_conferences/?search=felis",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"other_conferences",
+						""
+					],
+					"query": [
+						{
+							"key": "search",
+							"value": "felis"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Venue LIST",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "website",
+						"type": "text",
+						"value": "www.myconference.com",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "conference",
+							"value": "32",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "name",
+							"value": "Room to the lefty",
+							"type": "text"
+						},
+						{
+							"key": "description",
+							"value": "Some damn room on the left what can i say",
+							"type": "text"
+						}
+					],
+					"options": {
+						"formdata": {}
+					}
+				},
+				"url": {
+					"raw": "localhost:8000/api/my_conferences/27/venues/",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"my_conferences",
+						"27",
+						"venues",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Venue CREATE",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -393,16 +479,16 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8000/api/venues/list/27/",
+					"raw": "localhost:8000/api/my_conferences/27/create_venue/",
 					"host": [
 						"localhost"
 					],
 					"port": "8000",
 					"path": [
 						"api",
-						"venues",
-						"list",
+						"my_conferences",
 						"27",
+						"create_venue",
 						""
 					]
 				}
@@ -410,14 +496,14 @@
 			"response": []
 		},
 		{
-			"name": "Venues Update",
+			"name": "Venue GET UPDATE DELETE",
 			"request": {
-				"method": "PUT",
+				"method": "DELETE",
 				"header": [
 					{
 						"key": "website",
-						"value": "www.myconference.com",
 						"type": "text",
+						"value": "www.myconference.com",
 						"disabled": true
 					}
 				],
@@ -459,40 +545,7 @@
 			"response": []
 		},
 		{
-			"name": "Other Conferences",
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "website",
-						"value": "www.myconference.com",
-						"type": "text",
-						"disabled": true
-					}
-				],
-				"url": {
-					"raw": "localhost:8000/api/other-conferences/?search=felis",
-					"host": [
-						"localhost"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"other-conferences",
-						""
-					],
-					"query": [
-						{
-							"key": "search",
-							"value": "felis"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "User Profile",
+			"name": "Agenda List Create",
 			"protocolProfileBehavior": {
 				"disableBodyPruning": true
 			},
@@ -510,36 +563,67 @@
 					"mode": "formdata",
 					"formdata": [
 						{
-							"key": "username",
-							"value": "test211",
+							"key": "title",
+							"value": "title of the agenda that will be presented another one",
 							"type": "text"
 						},
 						{
-							"key": "password",
-							"value": "123",
+							"key": "abstract",
+							"value": "Some damn bullshit that no body cares about",
+							"type": "text"
+						},
+						{
+							"key": "presenter",
+							"value": "Terminator",
+							"type": "text"
+						},
+						{
+							"key": "author",
+							"value": "Ridley Scott",
+							"type": "text"
+						},
+						{
+							"key": "keywords",
+							"value": "shit, junk, stupid",
+							"type": "text"
+						},
+						{
+							"key": "starts",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "ends",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "venue",
+							"value": "24",
 							"type": "text"
 						}
 					]
 				},
 				"url": {
-					"raw": "localhost:8000/api/profile/",
+					"raw": "localhost:8000/api/my_conferences/27/agendas",
 					"host": [
 						"localhost"
 					],
 					"port": "8000",
 					"path": [
 						"api",
-						"profile",
-						""
+						"my_conferences",
+						"27",
+						"agendas"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Update Profile",
+			"name": "Agenda Update",
 			"request": {
-				"method": "PATCH",
+				"method": "DELETE",
 				"header": [
 					{
 						"key": "website",
@@ -552,70 +636,97 @@
 					"mode": "formdata",
 					"formdata": [
 						{
-							"key": "full_name",
-							"value": "Someone Important",
+							"key": "title",
+							"value": "Room to the lefty but a bit to the righty as well",
 							"type": "text"
 						},
 						{
-							"key": "city",
-							"value": "Stupidville",
-							"type": "text"
-						}
-					]
-				},
-				"url": {
-					"raw": "localhost:8000/api/profile/",
-					"host": [
-						"localhost"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"profile",
-						""
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Agenda List Create",
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "website",
-						"type": "text",
-						"value": "www.myconference.com",
-						"disabled": true
-					}
-				],
-				"body": {
-					"mode": "formdata",
-					"formdata": [
-						{
-							"key": "name",
-							"value": "Room to the lefty",
-							"type": "text"
-						},
-						{
-							"key": "description",
+							"key": "abstract",
 							"value": "Some damn room on the left what can i say",
 							"type": "text"
+						},
+						{
+							"key": "presenter",
+							"value": "Terminator",
+							"type": "text"
+						},
+						{
+							"key": "author",
+							"value": "Ridley Scott",
+							"type": "text"
+						},
+						{
+							"key": "keywords",
+							"value": "shit, junk, stupid",
+							"type": "text"
+						},
+						{
+							"key": "starts",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "ends",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "venue",
+							"value": "31",
+							"type": "text"
 						}
 					]
 				},
 				"url": {
-					"raw": "localhost:8000/api/schedules/list/27/",
+					"raw": "localhost:8000/api/agenda/1/",
 					"host": [
 						"localhost"
 					],
 					"port": "8000",
 					"path": [
 						"api",
-						"schedules",
-						"list",
-						"27",
+						"agenda",
+						"1",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Connection List Create",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "website",
+						"type": "text",
+						"value": "www.myconference.com",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "user_id",
+							"value": "4",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8000/api/friends/",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"friends",
 						""
 					]
 				}
