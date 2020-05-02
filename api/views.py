@@ -22,31 +22,27 @@ from rest_framework import viewsets
 from .serializers import UserSerializer, ConferenceSerializer, ProfileSerializer, VenueSerializer, AgendaSerializer, FriendshipRequestSerializer
 from .permissions import IsOwner, IsOwnerOfConference
 
-
-
-class UserViewSet(viewsets.ViewSet):
-
-    def list(self, request):
+class UserRetrieveCreateView(APIView):
+    def get(self, request):
         user = get_object_or_404(User, pk=self.request.user.id)
         serializer = UserSerializer(user)
         return Response(serializer.data)
-
-    def create(self, request):
+    
+    def post(self, request):
         serializer = UserSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-class ProfileViewSet(viewsets.ViewSet):
+class ProfileRetrieveUpdateView(APIView):
 
-    def list(self, request):
+    def get(self, request):
         profile = get_object_or_404(Profile, user=self.request.user)
         serializer = ProfileSerializer(profile)
         return Response(serializer.data)
 
-    @action(detail=False, methods=['patch'])
-    def change(self, request):
+    def patch(self, request):
         profile = get_object_or_404(Profile, user=self.request.user)
         serializer = ProfileSerializer(
             profile, data=request.data, partial=True)
@@ -55,21 +51,22 @@ class ProfileViewSet(viewsets.ViewSet):
             return Response(serializer.data, status=status.HTTP_204_NO_CONTENT)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-class MyConferenceViewSet(viewsets.ViewSet):
+class MyConferenceListCreateView(APIView):
 
-    permission_classes = [IsOwner]
-
-    def list(self, request):
+    def get(self, request):
         conferences = Conference.objects.filter(user=self.request.user)
         serializer = ConferenceSerializer(conferences, many=True)
         return Response(serializer.data)
 
-    def create(self, request):
+    def post(self, request):
         serializer = ConferenceSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save(user=self.request.user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class MyConferenceRetrieveUpdateDeleteView(APIView):
+    permission_classes = [IsOwner]
 
     def retrieve(self, request, pk):
         conference = get_object_or_404(Conference, pk=pk)
@@ -119,6 +116,27 @@ class MyConferenceViewSet(viewsets.ViewSet):
         self.check_object_permissions(request, conference)
         agenda = Agenda.objects.filter(conference=conference)
         serializer = AgendaSerializer(agenda, many=True)
+        return Response(serializer.data)
+
+    @action(detail=True, methods=['post'])
+    def create_agenda(self, request, pk):
+        conference = get_object_or_404(Conference, pk=pk)
+        self.check_object_permissions(request, conference)
+        serializer = AgendaSerializer(data=request.data)
+        if serializer.is_valid():
+            try:
+                serializer.save(conference=conference)
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
+            except IntegrityError as e:
+                return Response({'detail': 'Venue already exists'}, status=status.HTTP_400_BAD_REQUEST)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    @action(detail=True, methods=['get'])
+    def participants(self, request, pk):
+        conference = get_object_or_404(Conference, pk=pk)
+        self.check_object_permissions(request, conference)
+        participants = Participants.objects.filter(conference=conference)
+        serializer = AgendaSerializer(participants, many=True)
         return Response(serializer.data)
 
     @action(detail=True, methods=['post'])
@@ -232,11 +250,7 @@ class FriendViewSet(viewsets.ViewSet):
         - message
         """
 
-        friend_obj = Friend.objects.add_friend(
-            request.user,                                                     # The sender
-            get_object_or_404(User, pk=request.data['user_id']),  # The recipient
-            message=request.data.get('message', '')
-        )
+        friend_obj = Friend.objects.add_friend( request.user, get_object_or_404(User, pk=request.data['user_id']), message=request.data.get('message', '') )
 
         return Response(
             FriendshipRequestSerializer(friend_obj).data,
@@ -262,7 +276,6 @@ class FriendViewSet(viewsets.ViewSet):
             {"message": message},
             status=status_code
         )
-
 
 class FriendshipRequestViewSet(viewsets.ViewSet):
     """
