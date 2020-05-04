@@ -43,11 +43,8 @@
 		},
 		{
 			"name": "User GET CREATE",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
 			"request": {
-				"method": "GET",
+				"method": "POST",
 				"header": [
 					{
 						"key": "website",
@@ -61,7 +58,7 @@
 					"formdata": [
 						{
 							"key": "username",
-							"value": "test1211",
+							"value": "test1211qw",
 							"type": "text"
 						},
 						{
@@ -87,36 +84,12 @@
 			"response": []
 		},
 		{
-			"name": "Profile GET",
+			"name": "Profile GET CREATE",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"method": "GET",
-				"header": [
-					{
-						"key": "website",
-						"value": "www.myconference.com",
-						"type": "text",
-						"disabled": true
-					}
-				],
-				"url": {
-					"raw": "localhost:8000/api/profile/",
-					"host": [
-						"localhost"
-					],
-					"port": "8000",
-					"path": [
-						"api",
-						"profile",
-						""
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Profile UPDATE",
-			"request": {
-				"method": "PATCH",
 				"header": [
 					{
 						"key": "website",
@@ -135,7 +108,7 @@
 						},
 						{
 							"key": "organization",
-							"value": "COMSAYSsad",
+							"value": "COMSAYSsadasdasd",
 							"type": "text"
 						},
 						{
@@ -151,7 +124,7 @@
 					]
 				},
 				"url": {
-					"raw": "localhost:8000/api/profile/change/",
+					"raw": "localhost:8000/api/profile/",
 					"host": [
 						"localhost"
 					],
@@ -159,7 +132,6 @@
 					"path": [
 						"api",
 						"profile",
-						"change",
 						""
 					]
 				}
@@ -338,14 +310,14 @@
 					]
 				},
 				"url": {
-					"raw": "localhost:8000/api/my_conferences/31/",
+					"raw": "localhost:8000/api/myconferences/31/",
 					"host": [
 						"localhost"
 					],
 					"port": "8000",
 					"path": [
 						"api",
-						"my_conferences",
+						"myconferences",
 						"31",
 						""
 					]
@@ -366,14 +338,14 @@
 					}
 				],
 				"url": {
-					"raw": "localhost:8000/api/other_conferences/?search=felis",
+					"raw": "localhost:8000/api/otherconferences/?search=felis",
 					"host": [
 						"localhost"
 					],
 					"port": "8000",
 					"path": [
 						"api",
-						"other_conferences",
+						"otherconferences",
 						""
 					],
 					"query": [
@@ -388,11 +360,8 @@
 		},
 		{
 			"name": "Venue LIST",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
 			"request": {
-				"method": "GET",
+				"method": "POST",
 				"header": [
 					{
 						"key": "website",
@@ -426,16 +395,16 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8000/api/my_conferences/27/venues/",
+					"raw": "localhost:8000/api/venues/for/27/",
 					"host": [
 						"localhost"
 					],
 					"port": "8000",
 					"path": [
 						"api",
-						"my_conferences",
-						"27",
 						"venues",
+						"for",
+						"27",
 						""
 					]
 				}
@@ -727,6 +696,48 @@
 					"path": [
 						"api",
 						"friends",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Participant List Create",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "website",
+						"type": "text",
+						"value": "www.myconference.com",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "user_id",
+							"value": "4",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8000/api/participants/27/rejected_requests/",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"participants",
+						"27",
+						"rejected_requests",
 						""
 					]
 				}

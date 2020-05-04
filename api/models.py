@@ -83,72 +83,84 @@ class Agenda(models.Model):
         return '%s (%s)' % (self.title, self.presenter)
 
 
-# class ParticipantManager(models.Manager):
-#     def participants(self, conference):
-#         ''' RETURN A LIST OF ALL PARTICIPANTS '''
-#         return Participant.objects.filter(conference=conference)
+class ParticipantManager(models.Manager):
+    def participants(self, conference):
+        ''' RETURN A LIST OF ALL PARTICIPANTS '''
+        return Participant.objects.filter(conference=conference)
     
-#     def requests(self, conference):
-#         return ParticipantRequests.objects.filter(conference=conference)
+    def requests(self, conference):
+        return ParticipantRequest.objects.filter(conference=conference)
+    
+    def sent_requests(self, user):
+        return ParticipantRequest.objects.filter(user=user)
 
-#     def unread_request_count(self, conference):
-#         return ParticipantRequest.objects.filter(conference=conference, viewed_at__isnull=True).count()
+    def unread_request_count(self, conference):
+        return ParticipantRequest.objects.filter(conference=conference, viewed__isnull=True).count()
 
-#     def rejected_requests(self, conference):
-#         return ParticipantRequest.objects.filter(Conference=Conference, rejected_at__isnull=False).all()
+    def rejected_requests(self, conference):
+        return ParticipantRequest.objects.filter(conference=conference, rejected__isnull=False).all()
 
-#     def add_participant(self, conference, user):
-#         request, created = ParticipantRequest.objects.get_or_create( conference=conference, user=user )
-#         if created is False:
-#             raise IntegrityError('Request already sent')
-#         request.save()
-#         return request
+    def unrejected_requests(self, conference):
+        return ParticipantRequest.objects.filter(conference=conference, rejected__isnull=True).all()
 
-#     def remove_participant(self, conference, user):
-#         try:
-#             ParticipantRequest.objects.filter( conference=conference, user=user ).delete()
-#         except:
-#             raise IntegrityError('User does not exist')
+    def add_participant(self, conference, user, message):
+        # try:
+        request, created = ParticipantRequest.objects.get_or_create( conference=conference, user=user, message=message )
+        # except IntegrityError:
+            # raise IntegrityError('Request already sent.')
+
+        if created is False:
+            raise IntegrityError('Request already sent')
+        request.save()
+        return request
+
+    def remove_participant(self, conference, user):
+        try:
+            ParticipantRequest.objects.filter( conference=conference, user=user ).delete()
+        except:
+            raise IntegrityError('User does not exist')
         
 
-# class Participant(models.Model):
-#     conference = models.ForeignKey( Conference, on_delete=models.CASCADE, related_name="participants")
-#     user = models.ForeignKey( User, on_delete=models.CASCADE, related_name="participants")
+class Participant(models.Model):
+    conference = models.ForeignKey( Conference, on_delete=models.CASCADE, related_name="participants")
+    user = models.ForeignKey( User, on_delete=models.CASCADE, related_name="participants")
 
-#     objects = ParticipantManager()
+    objects = ParticipantManager()
 
-#     def __str__(self):
-#         return '%s (%s)' % (self.conference, self.user)
+    def __str__(self):
+        return '%s (%s)' % (self.conference, self.user)
 
 
-# class ParticipantRequest(models.Model):
-#     conference = models.ForeignKey( Conference, on_delete=models.CASCADE, related_name="participants")
-#     user = models.ForeignKey( User, on_delete=models.CASCADE, related_name="participants")
+class ParticipantRequest(models.Model):
+    conference = models.ForeignKey( Conference, on_delete=models.CASCADE, related_name="participant_requests")
+    user = models.ForeignKey( User, on_delete=models.CASCADE, related_name="participants_requests")
 
-#     created_at = models.DateTimeField(auto_now_add=True)
-#     rejected_at = models.DateTimeField(blank=True, null=True)
-#     viewed_at = models.DateTimeField(blank=True, null=True)
+    message = models.TextField(blank=True)
 
-#     class Meta:
-#         unique_together =['conference', 'user']
+    created = models.DateTimeField(auto_now_add=True)
+    rejected = models.DateTimeField(blank=True, null=True)
+    viewed = models.DateTimeField(blank=True, null=True)
 
-#     def accept(self):
-#         Participant.objects.create(Conference=self.conference, user=self.user)
-#         return True
+    class Meta:
+        unique_together =['conference', 'user']
 
-#     def reject(self):
-#         self.rejected_at = timezone.now()
-#         self.save()
-#         return True
+    def accept(self):
+        Participant.objects.create(Conference=self.conference, user=self.user)
+        return True
 
-#     def cancel(self):
-#         self.delete()
-#         return True
+    def reject(self):
+        self.rejected = timezone.now()
+        self.save()
+        return True
 
-#     def mark_viewed(self):
-#         self.viewed_at = timezone.now() 
-#         self.save()
-#         return True
+    def cancel(self):
+        self.delete()
+        return True
+
+    def mark_viewed(self):
+        self.viewed = timezone.now() 
+        self.save()
+        return True
 
 
 

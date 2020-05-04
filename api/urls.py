@@ -20,29 +20,24 @@ urlpatterns = [
     path('profile/', views.ProfileRetrieveUpdateView.as_view()),
 
     path('myconferences/', views.MyConferenceListCreateView.as_view()),
-    # path('my-conferences/<int:pk>/', views.MyConferenceDetailView.as_view()),
+    path('myconferences/<int:pk>/', views.MyConferenceRetrieveUpdateDeleteView.as_view()),
 
-    # path('other-conferences/', views.OtherConferenceListView.as_view()),
+    path('otherconferences/', views.OtherConferenceListView.as_view()),
 
-    # path('venues/for/<int:conference_id>/', views.VenueListView.as_view()),
-    # path('venues/<int:pk>/', views.VenueDetailView.as_view()),
+    path('venues/for/<int:conference_id>/', views.VenueListCreateView.as_view()),
+    path('venues/<int:pk>/', views.VenueRetrieveUpdateDeleteView.as_view()),
 
-    # path('agenda/for/<int:conference_id>/', views.AgendaListView.as_view()),
-    # path('agenda/<int:pk>/', views.AgendaDetailView.as_view()),
+    path('agendas/for/<int:conference_id>/', views.AgendaListCreateView.as_view()),
+    path('agendas/<int:pk>/', views.AgendaRetrieveUpdateDelete.as_view()),
 
     # path('friends/', views.FriendListView.as_view()),
 
-    # path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 ]
-# router = DefaultRouter()
-# router.register(r'user', views.UserViewSet, basename='user')
-# router.register(r'profile', views.ProfileViewSet, basename='profile')
-# router.register(r'my_conferences', views.MyConferenceViewSet, basename='my-conferences')
-# router.register(r'other_conferences', views.OtherConferenceViewSet, basename='other-conferences')
-# router.register(r'venues', views.VenueViewSet, basename='venues')
-# router.register(r'agendas', views.AgendaViewSet, basename='agendas')
-# router.register(r'friends', views.FriendViewSet, basename='friends')
-# router.register(r'friendrequests', views.FriendshipRequestViewSet, basename='friendrequests')
-# urlpatterns = router.urls
+router = DefaultRouter()
+router.register(r'friends', views.FriendViewSet, basename='friends')
+router.register(r'friendrequests', views.FriendshipRequestViewSet, basename='friendrequests')
+router.register(r'participants', views.ParticipantViewSet, basename='participants')
+router.register(r'participantrequests', views.ParticipantsRequestViewSet, basename='participantrequests')
+urlpatterns += router.urls
 
 # urlpatterns = format_suffix_patterns(urlpatterns)
