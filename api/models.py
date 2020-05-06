@@ -5,8 +5,6 @@ from django.utils import timezone
 
 from django.db import IntegrityError
 
-# Create your models here.
-
 
 class User(AbstractUser):
     """auth/login-related fields"""
@@ -82,7 +80,6 @@ class Agenda(models.Model):
     def __str__(self):
         return '%s (%s)' % (self.title, self.presenter)
 
-
 class ParticipantManager(models.Manager):
     def participants(self, conference):
         ''' RETURN A LIST OF ALL PARTICIPANTS '''
@@ -104,11 +101,7 @@ class ParticipantManager(models.Manager):
         return ParticipantRequest.objects.filter(conference=conference, rejected__isnull=True).all()
 
     def add_participant(self, conference, user, message):
-        # try:
         request, created = ParticipantRequest.objects.get_or_create( conference=conference, user=user, message=message )
-        # except IntegrityError:
-            # raise IntegrityError('Request already sent.')
-
         if created is False:
             raise IntegrityError('Request already sent')
         request.save()
@@ -118,8 +111,7 @@ class ParticipantManager(models.Manager):
         try:
             ParticipantRequest.objects.filter( conference=conference, user=user ).delete()
         except:
-            raise IntegrityError('User does not exist')
-        
+            raise IntegrityError('User does not exist') 
 
 class Participant(models.Model):
     conference = models.ForeignKey( Conference, on_delete=models.CASCADE, related_name="participants")
@@ -129,7 +121,6 @@ class Participant(models.Model):
 
     def __str__(self):
         return '%s (%s)' % (self.conference, self.user)
-
 
 class ParticipantRequest(models.Model):
     conference = models.ForeignKey( Conference, on_delete=models.CASCADE, related_name="participant_requests")
@@ -162,7 +153,21 @@ class ParticipantRequest(models.Model):
         self.save()
         return True
 
+class Notification(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='notifications')
+    message = models.TextField()
+    link = models.CharField(max_length=200)
 
+    created = models.DateTimeField(auto_now_add=True)
+    viewed = models.DateTimeField(null=True)
 
+    def unread_count(self, user):
+        return Notification.objects.filter(user=user, viewed__isnull=True).count()
 
+    def mark_viewed(self):
+        self.viewed = timezone.now() 
+        self.save()
+        return True
 
+    def notify(self, user, type, message):
+        Notification.objects.create()

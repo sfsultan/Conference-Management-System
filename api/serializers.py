@@ -1,4 +1,4 @@
-from .models import User, Profile, Conference, Venue, Agenda, ParticipantRequest
+from .models import User, Profile, Conference, Venue, Agenda, ParticipantRequest, Notification
 from rest_framework import serializers
 
 from friendship.models import FriendshipRequest, Friend
@@ -60,3 +60,9 @@ class ParticipantRequestSerializer(serializers.ModelSerializer):
     class Meta:
         model = ParticipantRequest
         fields = ('id', 'conference', 'user', 'message', 'created', 'rejected', 'viewed')
+
+class NotificationSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Notification
+        fields = ('id', 'user', 'message', 'created', 'viewed')

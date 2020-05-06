@@ -21,7 +21,7 @@ from .models import User, Conference, Profile, Venue, Agenda, ParticipantRequest
 from rest_framework import viewsets
 from .serializers import UserSerializer, ConferenceSerializer, ProfileSerializer
 from .serializers import VenueSerializer, AgendaSerializer, FriendshipRequestSerializer
-from .serializers import ParticipantRequestSerializer
+from .serializers import ParticipantRequestSerializer, NotificationSerializer
 from .permissions import IsOwner, IsOwnerOfConference
 
 class UserRetrieveCreateView(APIView):
@@ -373,3 +373,12 @@ class FriendshipRequestViewSet(viewsets.ViewSet):
         friendship_request = get_object_or_404(FriendshipRequest, pk=pk, to_user=request.user)
         friendship_request.reject()
         return Response( FriendshipRequestSerializer(friendship_request).data, status.HTTP_201_CREATED )
+
+class NotificationViewSet(viewsets.ViewSet):
+
+    def list(self, request):
+        notifications = Notification.objects.filter(user=request.user, viewed=null)
+        serializer = NotificationSerializer(notifications, many=True)
+        return Response(serializer.data)
+    
+
