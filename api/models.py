@@ -84,10 +84,10 @@ class ParticipantManager(models.Manager):
     def participants(self, conference):
         ''' RETURN A LIST OF ALL PARTICIPANTS '''
         return Participant.objects.filter(conference=conference)
-    
+
     def requests(self, conference):
         return ParticipantRequest.objects.filter(conference=conference)
-    
+
     def sent_requests(self, user):
         return ParticipantRequest.objects.filter(user=user)
 
@@ -111,7 +111,7 @@ class ParticipantManager(models.Manager):
         try:
             ParticipantRequest.objects.filter( conference=conference, user=user ).delete()
         except:
-            raise IntegrityError('User does not exist') 
+            raise IntegrityError('User does not exist')
 
 class Participant(models.Model):
     conference = models.ForeignKey( Conference, on_delete=models.CASCADE, related_name="participants")
@@ -149,7 +149,7 @@ class ParticipantRequest(models.Model):
         return True
 
     def mark_viewed(self):
-        self.viewed = timezone.now() 
+        self.viewed = timezone.now()
         self.save()
         return True
 
@@ -165,9 +165,6 @@ class Notification(models.Model):
         return Notification.objects.filter(user=user, viewed__isnull=True).count()
 
     def mark_viewed(self):
-        self.viewed = timezone.now() 
+        self.viewed = timezone.now()
         self.save()
         return True
-
-    def notify(self, user, type, message):
-        Notification.objects.create()
